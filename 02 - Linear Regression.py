@@ -40,10 +40,10 @@ with tf.Session() as sess:
 	for step in range(100):
 		# train_op와 cost를 계산하는 데, X에 x_data를 Y에 y_data를 입력 값으로 넣는다.
 		# train_op의 반환값을 _(무시)로 받고 cost 함수의 반환 값을 cost_val로 받는다.
-		_, cost_val = sess.run([train_op, cost], feed_dict={X:x_data, Y:y_data})
+		# _, cost_val = sess.run([train_op, cost], feed_dict={X:x_data, Y:y_data})
 		# 아래와 같이 두개를 나눠서 호출해도 된다.
-		# sess.run(train_op, feed_dict={X:x_data, Y:y_data})
-		# cost_val = sess.run(cost, feed_dict={X:x_data, Y:y_data})
+		sess.run(train_op, feed_dict={X:x_data, Y:y_data})
+		cost_val = sess.run(cost, feed_dict={X:x_data, Y:y_data})
 		print(step, cost_val, sess.run(W), sess.run(b))
 
 	print ("X:5, Y:", sess.run(hypothesis, feed_dict={X:5}))
